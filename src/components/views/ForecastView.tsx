@@ -11,6 +11,7 @@ import {
     ParsedTimepoint,
 } from '../../adapters/WeatherAdapter'
 import { OverviewCard } from 'components'
+import { HalfSunIcon } from 'components/icons'
 
 interface LatLonstate {
     lon: string
@@ -47,9 +48,10 @@ export const ForecastView = () => {
 
     const fetchPosition = () => {
         navigator.geolocation.getCurrentPosition((location) => {
+            // Set to maximum 6 decimal as described in the SMHI API.
             setState({
-                lon: location.coords.longitude.toString(),
-                lat: location.coords.latitude.toString(),
+                lon: location.coords.longitude.toFixed(6).toString(),
+                lat: location.coords.latitude.toFixed(6).toString(),
             })
         })
     }

@@ -6,6 +6,7 @@ import {
     CloudSnowIcon,
     CloudRainIcon,
     SunIcon,
+    HalfSunIcon,
 } from './icons'
 
 interface IconComponentProps {
@@ -14,38 +15,37 @@ interface IconComponentProps {
 
 export const IconComponent: FC<IconComponentProps> = ({ weatherInt }) => {
     /**
-     * Range 1-4 == Sun
-     * Range 5-7 == Cloud
+     * Range 1-2 = Sun
+     * Range 3-4 = HalfSun (variable cloudiness)
+     * Range 5-7 = Cloud
      * Range 8-9 = Light rain
-     * Range 10
-     *
+     * Int 10 or 20 = Moderate rain
+     * Int 11 or 21 = Lighting
+     * Range 12-17 and 22-27 = snow
      * @returns Icon Element
      */
     const switchIcon = () => {
-        // Sunny
-        if (weatherInt >= 1 && weatherInt <= 4) {
+        if (weatherInt >= 1 && weatherInt <= 2) {
             return <SunIcon />
         }
-        // Cloudy
+        if (weatherInt >= 3 && weatherInt <= 4) {
+            return <HalfSunIcon />
+        }
         if (weatherInt >= 5 && weatherInt <= 7) {
             return <CloudIcon />
         }
-        // Light and moderate rain
         if (
             (weatherInt >= 8 && weatherInt <= 9) ||
             (weatherInt >= 18 && weatherInt <= 19)
         ) {
             return <CloudDrizzleIcon />
         }
-        // Heavy rain
         if (weatherInt === 10 || weatherInt === 20) {
             return <CloudRainIcon />
         }
-        // Lightningstorm and thunder
         if (weatherInt === 11 || weatherInt === 21) {
             return <CloudLightningIcon />
         }
-        // Snow/sleet
         if (
             (weatherInt >= 12 && weatherInt <= 17) ||
             (weatherInt >= 22 && weatherInt <= 27)
