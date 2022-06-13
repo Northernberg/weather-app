@@ -19,8 +19,8 @@ interface LatLonstate {
 
 export const ForecastView = () => {
     const [state, setState] = useState<LatLonstate>({
-        lon: '13.819552',
-        lat: '55.433993',
+        lon: '',
+        lat: '',
     })
     const [err, setErr] = useState(false)
     const [isLoading, setLoading] = useState(false)
