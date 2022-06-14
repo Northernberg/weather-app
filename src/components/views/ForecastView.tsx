@@ -94,8 +94,8 @@ export const ForecastView = () => {
                         Kunde inte hitta väderprognos
                     </Typography>
                 )}
-                {Object.entries(timeSeries).map(([_, timepoints]) => (
-                    <OverviewCard timepoints={timepoints} />
+                {Object.entries(timeSeries).map(([timestamp, timepoints]) => (
+                    <OverviewCard key={timestamp} timepoints={timepoints} />
                 ))}
             </Grid>
         </Grid>

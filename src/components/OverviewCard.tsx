@@ -10,10 +10,13 @@ interface OverviewCardProps {
 
 export const OverviewCard: FC<OverviewCardProps> = ({ timepoints }) => {
     const [isExpanded, setExpanded] = useState(false)
+    // Get middlepoint of the timepoints to display in the overviewheader
+    const middleTimepoint =
+        timepoints[Math.abs(Math.round(timepoints.length / 2) - 1)]
     return (
         <Grid container>
             <OverviewHeader
-                timepoint={timepoints[0]}
+                timepoint={middleTimepoint}
                 onClick={() => setExpanded(!isExpanded)}
             />
             <Collapse in={isExpanded} sx={{ width: '100%' }}>
@@ -37,7 +40,12 @@ export const OverviewCard: FC<OverviewCardProps> = ({ timepoints }) => {
                     </Grid>
                 </Grid>
                 {timepoints.map((timepoint) => (
-                    <Grid container borderBottom={1} paddingY={1}>
+                    <Grid
+                        key={timepoint.validTime}
+                        container
+                        borderBottom={1}
+                        paddingY={1}
+                    >
                         <Grid container item xs={4} justifyContent="center">
                             <IconComponent weatherInt={timepoint.icon || 0} />
                         </Grid>
