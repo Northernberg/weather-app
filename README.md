@@ -1,7 +1,12 @@
 # Weather app
 
-Simple weather app that displays the forecast 10 days ahead based on longitude and latitude
+Simple weather app that displays the forecast 10 days ahead based on longitude and latitude.
 
-## This weather app is using SMHI API for weather forecasts
+This app was created with React framework using TypeScript.
+Components are created using Material UI
 
-## https://opendata.smhi.se/apidocs/
+## API used for weather forecasts
+
+This weather app is using SMHI API for weather forecasts
+
+https://opendata.smhi.se/apidocs/
